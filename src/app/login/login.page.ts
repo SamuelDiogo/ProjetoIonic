@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'firebase';
+import { User } from 'src/app/interfaces/user';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,12 @@ import { User } from 'firebase';
 export class LoginPage implements OnInit {
   public userLogin: User = {};
   public userRegister: User = {};
-  constructor() { }
+  constructor(
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
+    private authService: AuthService,
+    private loading: any,
+  ) {}
   
   ngOnInit() {}
 
@@ -17,7 +24,21 @@ export class LoginPage implements OnInit {
 
   }
 
-  register() {
-console.log(this.userRegister);
+   async register() {
+    await this.presentLoading();
+
+    try {
+      await this.authService.register(this.userRegister);
+    } catch(error) {
+      console.error(error);
+    } finally {
+      this.loading.dismiss();
+    } 
   }
+
+  async presentLoading() {
+    this.loading = await this.loadingCtrl.create({message: 'Por favor Aguarde...'});
+    return this.loading.present();
+  }
+
 }
