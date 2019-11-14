@@ -14,7 +14,7 @@ export class PerfilPage implements OnInit {
 
   ngOnInit() {
   }
-  async logout(){
+  async logout1(){
     try{
       await this.authService.logout();
     }catch(error){
