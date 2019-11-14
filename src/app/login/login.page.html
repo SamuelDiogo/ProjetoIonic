@@ -10,7 +10,7 @@
       <span>Login</span>
 
       <ion-item class="ion-margin-top" lines="none">
-        <ion-input type="text" placeholder="Usuário" [(ngModel)]="userLogin.usuario"></ion-input>
+        <ion-input type="text" placeholder="E-mail" [(ngModel)]="userLogin.email"></ion-input>
       </ion-item>
 
       <ion-item class="ion-margin-top" lines="none">
@@ -36,7 +36,8 @@
       <ion-item class="ion-margin-top" lines="none">
         <ion-input type="password" placeholder="Senha" [(ngModel)]="userRegister.password"></ion-input>
       </ion-item>
-
+      <br>
+      <span>No minímo 6 caracteres</span>
       <ion-button class="ion-margin-top" (click)="register()" color="light" expand="block">
         Cadastrar
       </ion-button>
